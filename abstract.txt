@@ -1,0 +1,23 @@
+Evaluation of a genetic algorithm based image approximation method
+
+Genetic algirithms (GA) offer good approximations to many
+problems, where no fast algorithm is known to calculate
+the optimal solutions. It models the natural selection,
+where each member of a population (called specimen)
+represents one possible solution.
+
+GA starts with an initial population, which is a set of
+possible solutions (e.g. empty or randomly generated).
+In each cycle GA produces new specimens by applying
+\emph{mutation} and \emph{crossover} operations on the
+existing ones. Then the population is evaluated by
+the \emph{selection} operator based on the \emph{fitness}
+function.
+
+In this paper a GA-based lossy image compression method is
+presented. A number of triangles are used to approximate
+a monochromatic image; the position of the triangles are
+optimized with GA. The chromosome representation, the
+mutation nad crossover operators and different selection
+strategies are evaluated. The algorithm is capable to give
+recognizable approximation of images in the 150 byte range.
