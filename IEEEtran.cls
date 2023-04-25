@@ -527,7 +527,7 @@
 
 
 % we can send console reminder messages to the user here
-\AtEndDocument{\ifCLASSOPTIONconference\@IEEEconsolenoticeconference\fi}
+%\AtEndDocument{\ifCLASSOPTIONconference\@IEEEconsolenoticeconference\fi}
 
 
 % warn about the use of single column other than for draft mode
