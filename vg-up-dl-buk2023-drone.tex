@@ -17,13 +17,7 @@
 
 \title{Data Collection in the Wild: Challenges and Solutions}
 
-\author{\IEEEauthorblockN{Gergely Vakulya}
-\IEEEauthorblockA{\small \textit{Alba Regia Technical Faculty} \\
-\textit{Óbuda University}\\
-\textit{Székesfehérvár, Hungary}\\
-\textit{vakulya.gergely@amk.uni-obuda.hu}
-}
-\and
+\author{
 \IEEEauthorblockN{Péter Udvardy}
 \IEEEauthorblockA{\small \textit{Alba Regia Technical Faculty} \\
 \textit{Óbuda University}\\
@@ -36,7 +30,15 @@
 \textit{TODO}\\
 \textit{TODO}\\
 \textit{TODO}
-}}
+}
+\and
+\IEEEauthorblockN{Gergely Vakulya}
+\IEEEauthorblockA{\small \textit{Alba Regia Technical Faculty} \\
+\textit{Óbuda University}\\
+\textit{Székesfehérvár, Hungary}\\
+\textit{vakulya.gergely@amk.uni-obuda.hu}
+}
+}
 
 \maketitle
 
@@ -74,7 +76,27 @@ of remote, nonaccessible areas \cite{corke2010}, such as rainforests
 
 \section{Related work}
 
+\section{The proposed monitoring method}
 
+\subsection{Sensor nodes}
+
+The hardware of the sensor node is based on an Unicomp UCMote Proton B mote.
+
+The software of the sensor nodes is built around the TinyOS. It is a component
+based real-time operating system, especially tailored for low-power applications.
+It has support for different types of microcontrollers, radios and sensors and
+the uniform interfaces make adding new device drivers and communication protocols possible.
+
+TinyOS already supported the ATmega128RFA1 SoC with its microcontroller core and
+automatically put it in low-power mode, when it has no task to run and no event
+to process. The 2.4 GHz radio is also supported and 802.15.4 standard packets can
+be sent and received with a simple CSMA/CA MAC protocol. The other radio chip
+(ATRF212, 868 MHz) is also supported with the standard CSMA/CA protocol, although
+the special low-power mode had to be implemented. To this, the header, which contains
+the source address, must be intercepted and the time-critical background lookup must be processed in
+parallel with the recetion of the remainig part if the packet, before the full packet arrives.
+Based on the result of the lookup one of the reserved bits of the acknowledgement
+packet is set of cleared, signaling the presence or the absence of a pending packet.
 
 \section{Summary}
 
