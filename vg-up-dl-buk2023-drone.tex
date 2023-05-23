@@ -95,9 +95,19 @@ for two reasons. First the the 2.4 GHz band is not suitable for the proposed
 monitoring system because of the high absorption of. Second, the board has
 only a low gain chip antenna connected of the Soc.
 
-The main board contains an additional ATRF212 radio chip, which operates in
+The main board contains an additional AT86RF212 radio chip, which operates in
 the 868 MHz ISM band. This radio chip can be configured to use different
-communication speeds from  It is well suited to the proposed system. First, the
+communication speeds from 20 to 1000 kbps according to the link conditions.
+Depending on the communication bandwidth the receiver sensitivity can be as good as
+-110 dBm. With the +10dBm maximum power output the achievable link budget can
+reach 120 dB, which is well suits to the proposed system. This radio is connected to
+an MMCX RF connector, which allows to connect a high gain external antenna.
+
+Since the drone is located above the sensor nodes during the data download
+process the usual quarter wave vertical antennas are not a good choice for
+this purpose, given they have very low gain in axial direction. QFH antennas,
+however have good overhead gain, therefore they are much more suitable for the
+proposed system.
 
 
 
@@ -121,7 +131,7 @@ TinyOS already supported the ATmega128RFA1 SoC with its microcontroller core
 and automatically put it in low-power mode, when it has no task to run and no
 event to process. The 2.4 GHz radio is also supported and 802.15.4 standard
 packets can be sent and received with a simple CSMA/CA MAC protocol. The other
-radio chip (ATRF212, 868 MHz) is also supported with the standard CSMA/CA
+radio chip (AT86RF212, 868 MHz) is also supported with the standard CSMA/CA
 protocol, although the special low-power mode had to be implemented. To this,
 the header, which contains the source address, must be intercepted and the
 time-critical background lookup must be processed in parallel with the recetion
