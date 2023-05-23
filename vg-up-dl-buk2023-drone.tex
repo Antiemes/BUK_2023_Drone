@@ -26,10 +26,11 @@
 }
 \and
 \IEEEauthorblockN{Levente Dimen}
-\IEEEauthorblockA{\small \textit{TODO} \\
-\textit{TODO}\\
-\textit{TODO}\\
-\textit{TODO}
+\IEEEauthorblockA{\small \textit{Department of Cadastre, Civil Engineering} \\
+\small \textit{and Environmental Engineering} \\
+\textit{1 Decembrie 1918 University}\\
+\textit{Alba Iulia, Romania}\\
+\textit{dimenlev@yahoo.com}
 }
 \and
 \IEEEauthorblockN{Gergely Vakulya}
@@ -39,6 +40,7 @@
 \textit{vakulya.gergely@amk.uni-obuda.hu}
 }
 }
+
 
 \maketitle
 
@@ -81,22 +83,58 @@ of remote, nonaccessible areas \cite{corke2010}, such as rainforests
 \subsection{Sensor nodes}
 
 The hardware of the sensor node is based on an Unicomp UCMote Proton B mote.
+The base board has an 8-bit ATmega128RFA1 Soc as the main controller. The
+microcontroller core is running at 16 MHz, with an approx. 4 mA current
+consumption from 3.3 V. The microcontroller has different sleep modes,
+and can be stopped from program execution. When stopped, the current consumtion
+is reduced to the TODO range. Another important parameter is the wakeup time,
+which is in the range of microseconds. The SoC contains a 2.4 GHz radio unit,
+that supports the 802.15.4 range standard for low-power low-range communication.
+This communication channel is used only during testing for debug purposes only,
+for two reasons. First the the 2.4 GHz band is not suitable for the proposed
+monitoring system because of the high absorption of. Second, the board has
+only a low gain chip antenna connected of the Soc.
+
+The main board contains an additional ATRF212 radio chip, which operates in
+the 868 MHz ISM band. This radio chip can be configured to use different
+communication speeds from  It is well suited to the proposed system. First, the
+
+
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.35\textwidth]{fig/ucproton.png}
+  \caption{The UCMote Proton B mote. }
+	\label{fig-proton}
+\end{figure}
+
 
 The software of the sensor nodes is built around the TinyOS. It is a component
-based real-time operating system, especially tailored for low-power applications.
-It has support for different types of microcontrollers, radios and sensors and
-the uniform interfaces make adding new device drivers and communication protocols possible.
+based real-time operating system, especially tailored for low-power
+applications. It has support for different types of microcontrollers, radios
+and sensors and the uniform interfaces make adding new device drivers and
+communication protocols possible.
 
-TinyOS already supported the ATmega128RFA1 SoC with its microcontroller core and
-automatically put it in low-power mode, when it has no task to run and no event
-to process. The 2.4 GHz radio is also supported and 802.15.4 standard packets can
-be sent and received with a simple CSMA/CA MAC protocol. The other radio chip
-(ATRF212, 868 MHz) is also supported with the standard CSMA/CA protocol, although
-the special low-power mode had to be implemented. To this, the header, which contains
-the source address, must be intercepted and the time-critical background lookup must be processed in
-parallel with the recetion of the remainig part if the packet, before the full packet arrives.
-Based on the result of the lookup one of the reserved bits of the acknowledgement
-packet is set of cleared, signaling the presence or the absence of a pending packet.
+\cite{vakulya2013}
+
+TinyOS already supported the ATmega128RFA1 SoC with its microcontroller core
+and automatically put it in low-power mode, when it has no task to run and no
+event to process. The 2.4 GHz radio is also supported and 802.15.4 standard
+packets can be sent and received with a simple CSMA/CA MAC protocol. The other
+radio chip (ATRF212, 868 MHz) is also supported with the standard CSMA/CA
+protocol, although the special low-power mode had to be implemented. To this,
+the header, which contains the source address, must be intercepted and the
+time-critical background lookup must be processed in parallel with the recetion
+of the remainig part if the packet, before the full packet arrives. Based on
+the result of the lookup one of the reserved bits of the acknowledgement packet
+is set of cleared, signaling the presence or the absence of a pending packet.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.35\textwidth]{fig/protocol.png}
+  \caption{}
+	\label{fig-piggyback}
+\end{figure}
 
 \section{Summary}
 
