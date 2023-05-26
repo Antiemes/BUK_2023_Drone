@@ -74,11 +74,64 @@ budget must be highly optimized.
 
 One of the most promising classic sensor networking applications was monitoring
 of remote, nonaccessible areas \cite{corke2010}, such as rainforests
-\cite{wark2008, cama2013}, volcanos \cite{werner2006, song2009} or glaciers \cite{martinez2004, martinez2005}. 
+\cite{wark2008, cama2013}, volcanos \cite{werner2006, song2009} or glaciers
+\cite{martinez2004, martinez2005}. 
 
 \section{Related work}
 
 \section{The proposed monitoring method}
+
+\subsection{System architecture}
+
+The architecture of the monitoring system consists of several independent
+measuring nodes and a base station, which is attached to a drone, flying
+over the measurement area at regular times, allowing to download the
+collected data.
+
+The sensor nodes do preprogrammed measurements and store the collected data
+in flash memory. 
+
+\subsection{The proposed communication protocol}
+
+In the proposed monitoring system the data collector nodes have limited
+energy (they are powered by batteries) similarly to regular sensor networking
+applications. Using a mesh protocol to collect the measured data each message
+would be sent by possibly many sensor nodes. The proposed protocol uses a star
+topology instead, which requires to send each message only once, but on the
+other hand it assumes direct connection (i.e. line of sight).
+The speciality of the system is, that the base station is absent in the huge
+majority of the time and present only occasionaly.
+
+The goal of the proposed communication protocol is to detect the presence
+of the base station and transfer the collected data when the conditions are
+given. The sensor nodes don't necessarily hear each other, therefore collision
+avoidance is the task of the base station.
+
+The protocol utilizes the fast acknowledgements of the 802.15.4 MAC layer.
+Instead of listening for some kind of beacon messages transmitted by the
+base station, the sensor nodes emit \emph{hello} messages
+regularly and wait for an \emph{ACK} message.
+The time interval of the \emph{hello} messages is a design parameter of
+the protocol.
+
+The 802.15.4 ACK packet has 3 unused bits (see Fig. \ref{ack-packet}), which
+are used to sign, when the actual data transfer process is possible.
+Each of the 8 combinations can sign different waiting times. This way
+the base station can spread the time slots of the nodes. The nodes turn off
+their radio during waiting. Note that the nodes do not need to maintain tight
+time synchronization, for this task.
+
+During the actual data transfer each node dend send the
+previously collected data divided into packets. Each packet is sent
+tightly next to each other, with acknowledgements by the base station.
+
+
+%timeslots for the sensor nodes by the gateway. The 3 bits
+%can define 8 possible combinations, where the \emph{000} means an extended
+%waiting time. Nodes received that bit combination will send another \emph{hello}
+%message, when the 
+
+
 
 \subsection{Sensor nodes}
 
