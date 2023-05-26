@@ -79,6 +79,28 @@ of remote, nonaccessible areas \cite{corke2010}, such as rainforests
 
 \section{Related work}
 
+Most conventional senskr network based monitoring
+systems use a base a mesh routing protocol to
+send all measurement messages to a dedicated base
+station. In a typical setup the sensor nodes have
+a limited amount of power (most commonly batteries),
+while the power source of the base is practically
+unlimited (mains power solar energy). These protocols
+often apply TDMA (Time Division Multiple Access),
+which relies on a tight time synchronization.
+In such a system each message is relayed through
+multiple subsequent nodes, which means extra energy
+consumption each time. Another less obvious
+disadvantage is, that nodes closer to the base
+relay more packets, thus they consume more energy.
+
+Another possible approach is to use one of the
+modern LPWAN protocols (e.g. LoRa or NBIoT).
+First these solutions obviously requite a working
+infrastructure. Second they are typically not
+designed to transfer large amount of (measurement)
+data.
+
 \section{The proposed monitoring method}
 
 \subsection{System architecture}
