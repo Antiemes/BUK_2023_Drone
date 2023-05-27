@@ -221,6 +221,35 @@ is set of cleared, signaling the presence or the absence of a pending packet.
 	\label{fig-piggyback}
 \end{figure}
 
+\section{Measurement scenarios}
+
+\subsection{Low density environmental data collection}
+
+In this scenario slowly changing environmental parameters are monitored. The sensor modalities are:
+
+\begin{itemize}
+
+  \item{Soil temperature with 16 bit resolution, one measurement every 5 minutes}
+  \item{Air temperature with 16 bit resolution, one measurement every 5 minutes}
+  \item{Ambient light intensity with 16 bit resolution, one measurement every 5 minutes}
+  \item{Relative humidity with 8 bit resolution, hourly}
+  \item{Soil moisture with 8 bit resolution, hourly}
+
+\end{itemize}
+
+A total of 15 sensor nodes are installed in the system.
+In each node a total nunber of 1776 bytes are generated.
+If the data is collected every two months, approx.
+100 kBytes of data is fetched from each node. With a
+pessimistic 20 kbps bandwidth approx 1 minute is
+necessary to download this data amount from each node.
+A 10 minute beacon interval for the sensor nodes would
+give a good balance between latency and power
+consumption. With these parameters the average flight
+time can be estimated to approx. 20 minutes.
+
+
+
 \section{Summary}
 
 In this paper 
