@@ -184,7 +184,8 @@ this purpose, given they have very low gain in axial direction. QFH antennas,
 however have good overhead gain, therefore they are much more suitable for the
 proposed system.
 
-
+The power source of the proposed sensor node consists of 4 D type non-rechargeable
+lithium batteries, providing 76000 mAh capacity at 3.6 V.
 
 \begin{figure}[htbp]
 	\centering
@@ -192,7 +193,6 @@ proposed system.
   \caption{The UCMote Proton B mote. }
 	\label{fig-proton}
 \end{figure}
-
 
 The software of the sensor nodes is built around the TinyOS. It is a component
 based real-time operating system, especially tailored for low-power
@@ -207,7 +207,7 @@ and automatically put it in low-power mode, when it has no task to run and no
 event to process. The 2.4 GHz radio is also supported and 802.15.4 standard
 packets can be sent and received with a simple CSMA/CA MAC protocol. The other
 radio chip (AT86RF212, 868 MHz) is also supported with the standard CSMA/CA
-protocol, although the special low-power mode had to be implemented. To this,
+protocol, although the special low-power mode had to be implemented. To achieve this,
 the header, which contains the source address, must be intercepted and the
 time-critical background lookup must be processed in parallel with the recetion
 of the remainig part if the packet, before the full packet arrives. Based on
@@ -238,17 +238,42 @@ In this scenario slowly changing environmental parameters are monitored. The sen
 \end{itemize}
 
 A total of 15 sensor nodes are installed in the system.
-In each node a total nunber of 1776 bytes are generated.
+In each node a total number of 1776 bytes are generated each day.
 If the data is collected every two months, approx.
 100 kBytes of data is fetched from each node. With a
 pessimistic 20 kbps bandwidth approx 1 minute is
 necessary to download this data amount from each node.
-A 10 minute beacon interval for the sensor nodes would
+A 1 minute beacon interval for the sensor nodes would
 give a good balance between latency and power
 consumption. With these parameters the average flight
 time can be estimated to approx. 20 minutes.
 
+The 802.15.4 packet has a 13 byte header (including the preamble,
+physical and MAC headers) and a 2 byte footer. With another
+The length of a \emph{hello} message with a 5 byte payload is
+20 bytes, which requires 8 ms to send with 20 kbps. The length of
+the ACK packet is 11 bytes, which requires 4.4 ms of time.
+Another approx. 1
+ms is required to turn on and off the radio and approx. 2 ms
+of gap time is required between the two packets. This adds up
+to 15.4 ms. 
+The actual data transfer requires approx. 60 seconds of time.
+The on time of the radio can be calculated as follows for a year:
 
+\begin{equation}
+    T_{on,annual} = 60 \cdot 6 + 365 \cdot 24 \cdot 60 \ cdot \frac{15.4}{1000} = 8454 [s]
+\end{equation}
+
+Now the annual power consumption of the radio can be calculated as
+follows:
+
+\begin{eqnarray}
+    C_{annual} &= T_{on,annual} * I_{radio,on} = \\
+     &= \frac{8454 [s]}{3600} \cdot 20 [mA] = [mAh] = 47 [mAh]
+\end{eqnarray}
+
+Considering only the radio communication one D type cell would last for
+several years (practically the self-discharge limits the lifespan).
 
 \section{Summary}
 
