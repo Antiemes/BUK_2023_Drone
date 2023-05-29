@@ -301,6 +301,39 @@ follows:
 Considering only the radio communication one D type cell would last for
 several years (practically the self-discharge limits the lifespan).
 
+\subsection{Fine grain environmental monitoring}
+
+In this scenario a fine grain environmental parameter (seismic activity) is. Here the
+sensor modality is a triaxial accelerometer with 16 bit resolution and 12.5 Hz
+sample rate. A total number of 6 nodes are required for this experiment.
+
+This measurement setup generates much more data, than the previous example. Let's
+use a one week interval for the data collection. The total data amount during
+a week is 2.1 MB in each node. In this case a higher data rate (250 kbps) is more
+suitable, which is only achievable when the distance between the nodes and the
+base station is smaller (the altitude of the drone is lower) and when no big
+obstacles (i.e. large trees) are present.
+
+We can here choose similar beacon interval to the previous example (1 minute). Note
+that the nodes can use different data rates for the beaconing and for the
+data transfer. The calculated data transfer time is 472 seconds. Based on
+the calculations the annual on-time is:
+
+\begin{equation}
+    T_{on,annual} = 52 \cdot 472 + 365 \cdot 24 \cdot 60 \cdot \frac{15.4}{1000} = 510198 [s]
+\end{equation}
+
+Now the annual power consumption of the radio can be calculated as
+follows:
+
+\begin{align}
+    C_{annual} &= T_{on,annual} * I_{radio,on} = \\
+     &= \frac{510198 [s]}{3600} \cdot 20 [mA] = 1822 [mAh]
+\end{align}
+
+Considering a 19000 mAh battery capacity the lifespan of the system would
+be approx. 10 years. Note that only the radio communication was taken into account.
+
 \section{Summary}
 
 In this paper 
