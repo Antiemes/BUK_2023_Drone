@@ -79,13 +79,13 @@ of remote, nonaccessible areas \cite{corke2010}, such as rainforests
 
 \section{Related work}
 
-Most conventional senskr network based monitoring
-systems use a base a mesh routing protocol to
+Most conventional sensor network based monitoring
+systems use a mesh routing protocol to
 send all measurement messages to a dedicated base
 station. In a typical setup the sensor nodes have
 a limited amount of power (most commonly batteries),
 while the power source of the base is practically
-unlimited (mains power solar energy). These protocols
+unlimited (mains power or solar energy). These protocols
 often apply TDMA (Time Division Multiple Access),
 which relies on a tight time synchronization.
 In such a system each message is relayed through
@@ -95,7 +95,8 @@ disadvantage is, that nodes closer to the base
 relay more packets, thus they consume more energy.
 
 Another possible approach is to use one of the
-modern LPWAN protocols (e.g. LoRa or NBIoT).
+modern LPWAN protocols (e.g. LoRa \cite{erturk2019,
+migabo2017} or NBIoT).
 First these solutions obviously requite a working
 infrastructure. Second they are typically not
 designed to transfer large amount of (measurement)
@@ -200,8 +201,6 @@ applications. It has support for different types of microcontrollers, radios
 and sensors and the uniform interfaces make adding new device drivers and
 communication protocols possible.
 
-\cite{vakulya2013}
-
 TinyOS already supported the ATmega128RFA1 SoC with its microcontroller core
 and automatically put it in low-power mode, when it has no task to run and no
 event to process. The 2.4 GHz radio is also supported and 802.15.4 standard
@@ -210,7 +209,8 @@ radio chip (AT86RF212, 868 MHz) is also supported with the standard CSMA/CA
 protocol, although the special low-power mode had to be implemented. To achieve this,
 the header, which contains the source address, must be intercepted and the
 time-critical background lookup must be processed in parallel with the recetion
-of the remainig part if the packet, before the full packet arrives. Based on
+of the remainig part if the packet, before the full packet arrives \cite{vakulya2013}.
+Based on
 the result of the lookup one of the reserved bits of the acknowledgement packet
 is set of cleared, signaling the presence or the absence of a pending packet.
 
@@ -226,7 +226,7 @@ is set of cleared, signaling the presence or the absence of a pending packet.
 The Chinese DJI company can be considered as one of the leading UAV
 manufacturers in the world. The DJI Phantom 3 Advanced UAV is available since
 2015 and beside its good features cannot be considered as the latest techniques
-[3-4].
+\cite{udvardy2019}.
 
 The UAV weighs 1280 grams and has a 15.2V 4480mAh battery which allows maximum
 23 minutes’ flight time. The onboard Sony EXMOR 1/2.3” camera has 12 million
@@ -246,7 +246,6 @@ and 0.5 meters depending on the positioning method.
 This UAV can reach approximately 3 kilometers distance outdoor from the home
 point which is marked before the flight starts. The ‘Go home’ function helps to
 find the hover in case of being lost or invisible.
-
 
 \section{Measurement scenarios}
 
@@ -288,16 +287,16 @@ The actual data transfer requires approx. 60 seconds of time.
 The on time of the radio can be calculated as follows for a year:
 
 \begin{equation}
-    T_{on,annual} = 60 \cdot 6 + 365 \cdot 24 \cdot 60 \ cdot \frac{15.4}{1000} = 8454 [s]
+    T_{on,annual} = 60 \cdot 6 + 365 \cdot 24 \cdot 60 \cdot \frac{15.4}{1000} = 8454 [s]
 \end{equation}
 
 Now the annual power consumption of the radio can be calculated as
 follows:
 
-\begin{eqnarray}
+\begin{align}
     C_{annual} &= T_{on,annual} * I_{radio,on} = \\
-     &= \frac{8454 [s]}{3600} \cdot 20 [mA] = [mAh] = 47 [mAh]
-\end{eqnarray}
+     &= \frac{8454 [s]}{3600} \cdot 20 [mA] = 47 [mAh]
+\end{align}
 
 Considering only the radio communication one D type cell would last for
 several years (practically the self-discharge limits the lifespan).
