@@ -9,7 +9,7 @@
 \usepackage{xcolor}
 %\usepackage{booktabs}
 \usepackage{tabularray}
-\usepackage{flushend}
+%\usepackage{flushend}
 \UseTblrLibrary{booktabs}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
@@ -390,15 +390,46 @@ air quality parameters. The sensor modalities and data
 collection parameters are as follows:
 
 \begin{itemize}
-	\item{Particulate Matter (PM2.5) concentration with 16-bit resolution, one measurement every 1 minute.}
-	\item{Carbon Monoxide (CO) concentration with 12-bit resolution, one measurement every 5 minutes.}
-	\item{Nitrogen Dioxide (NO2) concentration with 12-bit resolution, one measurement every 5 minutes.}
-	\item{Ozone (O3) concentration with 12-bit resolution, one measurement every 5 minutes.}
-	\item{Ambient Temperature with 10-bit resolution, one measurement every 1 minute.}
-	\item{Relative Humidity with 10-bit resolution, one measurement every 1 minute.}
+	\item{Particulate Matter (PM2.5) concentration with 16-bit resolution, one measurement every minute.}
+	\item{Carbon Monoxide (CO) concentration with 16-bit resolution, one measurement every minute.}
+  \item{Nitrogen Dioxide (NO\textsubscript{2}) concentration with 16-bit resolution, one measurement every minute.}
+  \item{Ozone (O\textsubscript{3}) concentration with 16-bit resolution, one measurement every minute.}
+	\item{Ambient Temperature with 16-bit resolution, one measurement every minute.}
+	\item{Relative Humidity with 8-bit resolution, one measurement every minute.}
 \end{itemize}
 
+In this scenario a monthly data collection is scheduled. Each day 15840 bytes of data
+is generated on each sensor, which means approx. 500 kBytes monthly. With 20 kbps
+bandwidth the net data transfer time is 190 s. Now let's choose a 30 s beacon time.
+The annual on time can be calculated as follows:
+
+\begin{equation}
+    T_{on,annual} = 190 \cdot 12 + 365 \cdot 24 \cdot 60 \cdot 2 \cdot \frac{15.4}{1000} = 18468 [s]
+\end{equation}
+
+Now the annual power consumption of the radio can be calculated as
+follows:
+
+\begin{align}
+    C_{annual} &= T_{on,annual} * I_{radio,on} = \\
+     &= \frac{8454 [s]}{3600} \cdot 20 [mA] = 102 [mAh]
+\end{align}
+
+In this case the overall annual power consumption is twice as much as the
+prevous case, but the same D type battery would also last for several years 
+in this case. Note that only the radio communication was taken into account
+for the calculations. Powering the sensors take additional energy.
+
 \subsection{Fine grain seismic monitoring}
+
+
+\begin{figure*}[t]
+	\centering
+	\includegraphics[width=0.85\textwidth]{fig/legal.png}
+  \caption{UAS requirements and limitations. (Source: \texttt{easa.europa.eu})}
+	\label{fig-uav-legal}
+\end{figure*}
+\subsection{Frequency usage}
 
 In this scenario a fine grain environmental parameter (seismic activity) is. Here the
 sensor modality is a triaxial accelerometer with 16 bit resolution and 12.5 Hz
@@ -433,8 +464,6 @@ be approx. 10 years. Note that only the radio communication was taken into accou
 
 \section{Legal background}
 
-\subsection{Frequency usage}
-
 Although several frequency bands are referred as \emph{unlicensed}, they are
 under legal control as well. The most well known groups are the ISM (Industrial,
 Scientific and Medical) bands and the SRDs (Short Range Devices) \cite{loy2005}. Our case
@@ -457,23 +486,16 @@ are allowed, with different conditions (e.g. bandwidth, power and duty cycle).
 
 \subsection{UAV regulations}
 
-\begin{figure*}[t]
-	\centering
-	\includegraphics[width=0.85\textwidth]{fig/legal.png}
-  \caption{}
-	\label{fig-piggyback}
-\end{figure*}
-
 In Hungary the UAV (unmanned aerial vehicle) and UAS (unmanned aircraft system)
 flight is regulated by strict law which is harmonised with the European
 legislations (EU Regulation 2019/947 on the rules and procedures for the
-operation of unmanned aircraft). https://eur-lex.europa.eu/
+operation of unmanned aircraft). (Source: \texttt{https://eur-lex.europa.eu/})
 
 Each UAS of which the weight exceeds 120 grams or has onboard data recording
 equipment (i.e. camera) must be registered online first. In the following step
 the UAS operators also must be registered together with their valid third-party
 liability insurance linked to their UAS at the Traffic Authority. The insurance
-must cover between 12-15 thousand EURO damage for a year. http://www.legter.hu
+must cover between 12-15 thousand EURO damage for a year. (Source: \texttt{http://www.legter.hu})
 
 UAS operators must get the so-called flight licence and as a drone operator
 they get a unique registration number which is valid in all EASA (European
@@ -485,7 +507,7 @@ cannot fly over assembly people and cannot transport dangerous materials and
 cannot spread any materials to the ground. This category contains A1-A3 and A2
 subcategories with the difference in UAS weight, the minimum distance from and
 overfly time of uninvolved persons and the horizontal flight speed.
-http://www.doe.hu
+(Source: \texttt{http://www.doe.hu})
 
 The competence exam is available and valid in every EU states. In Hungary the
 Austrian A1-A3 exam is very popular as it is online and free.
