@@ -150,7 +150,7 @@ vicinity of the local football arena.
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.25\textwidth]{fig/map1.png}
-  \caption{}
+  \caption{The map of the Sóstó natural reserve}
 	\label{fig-map1}
 \end{figure}
 
@@ -184,8 +184,8 @@ in flash memory.
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.45\textwidth]{fig/area.png}
-  \caption{}
-	\label{fig-map1}
+  \caption{The architecture of the proposed system}
+	\label{fig-area}
 \end{figure}
 
 \subsection{The proposed communication protocol}
@@ -211,12 +211,20 @@ regularly and wait for an \emph{ACK} message.
 The time interval of the \emph{hello} messages is a design parameter of
 the protocol.
 
-The 802.15.4 ACK packet has 3 unused bits (see Fig. \ref{ack-packet}), which
+The 802.15.4 ACK packet has 3 unused bits (see Fig. \ref{fig-ack-packet}), which
 are used to sign, when the actual data transfer process is possible.
 Each of the 8 combinations can sign different waiting times. This way
 the base station can spread the time slots of the nodes. The nodes turn off
 their radio during waiting. Note that the nodes do not need to maintain tight
 time synchronization, for this task.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.5\textwidth]{fig/ack-packet.png}
+  \caption{The format of the 802.15.4 ACK packet with the 3 reserved bits highlighted
+  in the frame control field (FCF)}
+	\label{fig-ack-packet}
+\end{figure}
 
 During the actual data transfer each node dend send the
 previously collected data divided into packets. Each packet is sent
@@ -265,7 +273,7 @@ lithium batteries, providing 76000 mAh capacity at 3.6 V.
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.35\textwidth]{fig/ucproton.png}
-  \caption{The UCMote Proton B mote. }
+  \caption{The UCMote Proton B mote.}
 	\label{fig-proton}
 \end{figure}
 
@@ -291,7 +299,7 @@ is set of cleared, signaling the presence or the absence of a pending packet.
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.35\textwidth]{fig/protocol.png}
-  \caption{}
+  \caption{The timing diagram of the ACK piggybacking protocol}
 	\label{fig-piggyback}
 \end{figure}
 
@@ -422,6 +430,48 @@ follows:
 
 Considering a 19000 mAh battery capacity the lifespan of the system would
 be approx. 10 years. Note that only the radio communication was taken into account.
+
+\section{Legal background}
+
+\begin{figure*}[t]
+	\centering
+	\includegraphics[width=0.85\textwidth]{fig/legal.png}
+  \caption{}
+	\label{fig-piggyback}
+\end{figure*}
+
+In Hungary the UAV (unmanned aerial vehicle) and UAS (unmanned aircraft system)
+flight is regulated by strict law which is harmonised with the European
+legislations (EU Regulation 2019/947 on the rules and procedures for the
+operation of unmanned aircraft). https://eur-lex.europa.eu/
+
+Each UAS of which the weight exceeds 120 grams or has onboard data recording
+equipment (i.e. camera) must be registered online first. In the following step
+the UAS operators also must be registered together with their valid third-party
+liability insurance linked to their UAS at the Traffic Authority. The insurance
+must cover between 12-15 thousand EURO damage for a year. http://www.legter.hu
+
+UAS operators must get the so-called flight licence and as a drone operator
+they get a unique registration number which is valid in all EASA (European
+Union Aviation Safety Agency) member state. This flight open category licence
+is available for those UAS’s which are less than 25 kilograms of MTOM (maximum
+take-off mass), the maximum flight height is 120 meters from the AGL (above
+ground level), the UAS must remain in VLOS (visual line of sight) and the UAS
+cannot fly over assembly people and cannot transport dangerous materials and
+cannot spread any materials to the ground. This category contains A1-A3 and A2
+subcategories with the difference in UAS weight, the minimum distance from and
+overfly time of uninvolved persons and the horizontal flight speed.
+http://www.doe.hu
+
+The competence exam is available and valid in every EU states. In Hungary the
+Austrian A1-A3 exam is very popular as it is online and free.
+
+After the fulfilment of the legislative background the GoodID application for
+identification purposes and MyDroneSpace ny Hungarocontrol application right
+before flight must be used. UAS operators must ask for airspace usage
+permission for the exact time. The official administrative deadline for the
+permission is 30 days before flight but for special stakeholders there is a
+simplified procedure with 5 days lead time.
 
 \section{Summary}
 
