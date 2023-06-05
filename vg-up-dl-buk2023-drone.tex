@@ -50,7 +50,7 @@ Extensive monitoring plays a key role in environmental protection. This task, ho
 has many issues to solve, communication and data collection being a difficult one.
 This paper focuses to the challenges of observing hard-to-access areas, e.g.
 such as forests and wetlands. The performance of the possible solutions for this problem
-are compared, focusing to sensor networking and LPWAN technologies, and a drone based solution
+are compared, focusing to sensor networking and LPWAN technologies, and an UAS based solution
 will be proposed. The presented method offers a robust, and reliable, yet simple
 data collection solution. The hardware and software architecture, the communication protocol
 will be described and the estimated performance of the system is analyzed.
@@ -59,7 +59,7 @@ will be described and the estimated performance of the system is analyzed.
 \end{abstract}
 
 \begin{IEEEkeywords}
-environment monitoring, data collecion, sensor network, drone technology
+environment monitoring, data collecion, sensor network, UAS technology
 \end{IEEEkeywords}
 
 \section{Introduction}
@@ -174,7 +174,7 @@ pipeline.
 \subsection{System architecture}
 
 The architecture of the monitoring system consists of several independent
-measuring nodes and a base station, which is attached to a drone, flying
+measuring nodes and a base station, which is attached to an Unmanned Aircraft System (UAS), flying
 over the measurement area at regular times, allowing to download the
 collected data.
 
@@ -261,7 +261,7 @@ Depending on the communication bandwidth the receiver sensitivity can be as good
 reach 120 dB, which is well suits to the proposed system. This radio is connected to
 an MMCX RF connector, which allows to connect a high gain external antenna.
 
-Since the drone is located above the sensor nodes during the data download
+Since the UAS is located above the sensor nodes during the data download
 process the usual quarter wave vertical antennas are not a good choice for
 this purpose, given they have very low gain in axial direction. QFH antennas \cite{adams1974},
 however have good overhead gain, therefore they are much more suitable for the
@@ -303,7 +303,7 @@ is set of cleared, signaling the presence or the absence of a pending packet.
 	\label{fig-piggyback}
 \end{figure}
 
-\section{Drone}
+\section{UAS technology}
 
 The Chinese DJI company can be considered as one of the leading UAV
 manufacturers in the world. The DJI Phantom 3 Advanced UAV is available since
@@ -439,7 +439,7 @@ This measurement setup generates much more data, than the previous example. Let'
 use a one week interval for the data collection. The total data amount during
 a week is 2.1 MB in each node. In this case a higher data rate (250 kbps) is more
 suitable, which is only achievable when the distance between the nodes and the
-base station is smaller (the altitude of the drone is lower) and when no big
+base station is smaller (the altitude of the UAS is lower) and when no big
 obstacles (i.e. large trees) are present.
 
 We can here choose similar beacon interval to the previous example (1 minute). Note
@@ -524,7 +524,7 @@ Monitoring physical or natural parameters in harsh environments (e.g. forests an
 challenges, getting the collected data being one of the hardest one. In this paper a novel data
 collection approach was presented, using done technology.
 The system design with the sensor nodes' hardware, software,
-the communication protocol and the drone technology was presented and
+the communication protocol and the Unmanned Aircraft System (UAS) technology was presented and
 calculations were shown for scenarios with different data density.
 Calculations support the applicability of the proposed system
 in real scenarios.
